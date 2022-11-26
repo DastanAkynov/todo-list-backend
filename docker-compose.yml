@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_SECRET}
+      - POSTGRES_DB=${DB_NAME}
+  api:
+    build: ./
+    container_name: todo-list-api
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - ./.env:/app/.env
+    environment:
+      - TYPEORM_USERNAME=${DB_USER}
+      - TYPEORM_PASSWORD=${DB_SECRET}
+      - TYPEORM_DATABASE=${DB_NAME}
+      - TYPEORM_PORT=5432
+      - TYPEORM_HOST=db
+    
