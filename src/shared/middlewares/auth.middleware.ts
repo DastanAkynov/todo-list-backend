@@ -12,7 +12,7 @@ export class AuthMiddleware implements NestMiddleware {
   async use(req: JwtAuthRequest, res: Response, next: NextFunction) {
     const token = req.headers['authorization']
     const user = await this.tokenService.validateByToken(token)
-    if(!token || !user) throw new UnauthorizedException('Вы не авторизованы. Пожалуйста пройдите регистацию!')
+    if(!token || !user) throw new UnauthorizedException('You are unauthorized')
     req.user = user
     
     next();
