@@ -10,7 +10,7 @@ export class AuthMiddleware implements NestMiddleware {
   constructor(private readonly tokenService: TokenService){}
   
   async use(req: JwtAuthRequest, res: Response, next: NextFunction) {
-    const token = req.headers['authorization']
+    const token = req.headers['authorization']?.split(' ')[1]
     const user = await this.tokenService.validateByToken(token)
     if(!token || !user) throw new UnauthorizedException('You are unauthorized')
     req.user = user
