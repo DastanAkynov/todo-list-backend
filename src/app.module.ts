@@ -4,7 +4,8 @@ import typeOrmConfig from './config/typeorm.config';
 import { 
   AuthModule,
   UserModule,
-  SharedModule
+  SharedModule,
+  TodoModule
 } from './modules';
 
 @Module({
@@ -12,6 +13,7 @@ import {
     TypeOrmModule.forRoot(typeOrmConfig),
     UserModule,
     AuthModule,
+    TodoModule,
     SharedModule
   ],
   controllers: [],

@@ -1,9 +1,10 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
-import { UserEntity } from '../entities';
+import { TodoEntity, UserEntity } from '../entities';
 require('dotenv').config();
 
 const ENTETIES = [
-  UserEntity
+  UserEntity,
+  TodoEntity
 ]
 
  const typeOrmConfig: TypeOrmModuleOptions = {
