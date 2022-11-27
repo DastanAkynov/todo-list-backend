@@ -8,9 +8,5 @@ export class UserController {
     private userService: UserService
   ){}
 
-  @Post('user')
-  async create(@Body() data: UserDto)  {
-    return await this.userService.create(data)
-  }
 
 }

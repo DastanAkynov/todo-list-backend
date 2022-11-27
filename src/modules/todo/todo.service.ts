@@ -15,19 +15,21 @@ export class TodoService {
   ) {}
 
   async create({user}: JwtAuthRequest, data: CreateTodoDto): Promise<TodoEntity> {
-    console.log(user)
     const {title, description} = data
     const todo = await this.todoRepo.create()
     todo.title = title
     todo.description = description
     todo.user = await this.userRepo.findOne(user.id)
     await todo.save()
+    delete todo.user
 
     return todo
   }
 
   async getAll(): Promise<TodoEntity[]> {
-    const todos = await this.todoRepo.find()
+    const todos = await this.todoRepo.createQueryBuilder('todo')
+      .leftJoinAndSelect('todo.user', 'user')
+      .getMany() 
     return todos
   }
 

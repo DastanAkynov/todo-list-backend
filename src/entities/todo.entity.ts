@@ -1,25 +1,29 @@
 import { UserEntity } from './user.entity';
 import { TodoStatus } from '../shared/types';
-import {  BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { BeforeUpdate, Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { AppBaseEntity } from './app-base.entity';
-
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('todo')
 export class TodoEntity extends AppBaseEntity {
+  @ApiProperty()
   @Column('varchar', { nullable: false })
   title: string;
 
+  @ApiProperty()
   @Column('varchar', { nullable: true })
   description?: string;
 
+  @ApiProperty()
   @Column('enum', { enum: TodoStatus, default: TodoStatus.CREATED })
   status: TodoStatus;
 
+  @ApiProperty()
   @Column('varchar', { nullable: false, default: false })
   isCompleted?: boolean;
 
   @ManyToOne(() => UserEntity,
-    { nullable: true, eager: true, onDelete: 'CASCADE' },
+    { nullable: true, eager: false, onDelete: 'CASCADE' },
   )
   @JoinColumn()
   user?: UserEntity;

@@ -32,9 +32,9 @@ export class AuthService {
     .where('user.email = :email', {email})
     .getOne()
     
-    if(!user) throw new NotFoundException('Invalid email')
+    if(!user) throw new UnauthorizedException('Invalid email')
     const validPassword = await user.validatePassword(password)
-    if(!validPassword)  throw new NotFoundException('Invalid password')
+    if(!validPassword)  throw new UnauthorizedException('Invalid password')
     delete user.password
 
     const response = await this.buildResponse(user)

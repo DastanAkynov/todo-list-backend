@@ -1,12 +1,15 @@
 import { BeforeInsert, Column, Entity } from 'typeorm';
 import { AppBaseEntity } from './app-base.entity';
 import { hash, compare } from 'bcrypt'
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 
 @Entity('user')
 export class UserEntity extends AppBaseEntity {
+  @ApiProperty()
   @Column('varchar', { nullable: false })
   name: string;
 
+  @ApiProperty()
   @Column('varchar', { nullable: false, unique: true })
   email: string;
 
