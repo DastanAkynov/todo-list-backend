@@ -1,11 +1,11 @@
 # Todo List API
-Backend "Todo list api" приложение c использованием стэков:
+Backend приложение "Todo list api", на базе стэков:
 - NestJS - сервер
 - PostgreSQL - база данных
 - TypeOrm - интерагиция с б/д и миграции
 - Docker - контейниризация
 
-## Метод для установки и запуска
+## Методы для установки и запуска
 
 1. Склонируйте репозиторий к себе локально
 
@@ -35,8 +35,7 @@ DB_NAME=todo-list_db
 /doc/api
 ```
 
-Пример:
-[http://localhost:8000/doc/api]
+Пример: [http://localhost:8000/doc/api](http://localhost:8000/doc/api)
 
 
 ### Запуск проекта с помощью Docker
