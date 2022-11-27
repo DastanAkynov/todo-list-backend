@@ -22,8 +22,8 @@ const ENTETIES = [
     migrationsDir: __dirname + '/../migrations/*{.ts,.js}',
   },
   synchronize: false,
-  migrationsRun: true,
-  logging: true
+  migrationsRun: process.env.NODE_PROCESS === 'production' ? true : false,
+  logging: false
 };
 
 export default typeOrmConfig

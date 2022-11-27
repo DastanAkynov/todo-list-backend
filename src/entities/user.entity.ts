@@ -1,7 +1,7 @@
 import { BeforeInsert, Column, Entity } from 'typeorm';
 import { AppBaseEntity } from './app-base.entity';
 import { hash, compare } from 'bcrypt'
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('user')
 export class UserEntity extends AppBaseEntity {

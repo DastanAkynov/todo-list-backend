@@ -28,7 +28,6 @@ export class TodoController {
   
   @ApiOperation({summary: 'Get all todos'})
   @ApiResponse({status: 200, description: 'Get all todos', type: [TodoWithUserResponse]})
-  @ApiBadRequestResponse({status: 404, description: 'Todo not found'})
   @Get('todos')
   getAll(): Promise<TodoEntity[]>  {
     return this.todoService.getAll()
@@ -36,7 +35,6 @@ export class TodoController {
 
   @ApiOperation({summary: 'Get my todos'})
   @ApiResponse({status: 200, description: 'Get my todos', type: [TodoResponse]})
-  @ApiBadRequestResponse({status: 404, description: 'Todo not found'})
   @Get('todos/my')
   getUserTodos(
     @Req() req: JwtAuthRequest
@@ -46,7 +44,6 @@ export class TodoController {
 
   @ApiOperation({summary: 'Update todo by id'})
   @ApiResponse({status: 200, description: 'Update todo', type: TodoExtendedResponse})
-  @ApiBadRequestResponse({status: 404, description: 'Todo not found'})
   @ApiBody({type: UpdateTodoDto})
   @Put('todo/:id')
   @UsePipes(ValidationPipe)
@@ -60,9 +57,8 @@ export class TodoController {
 
   @ApiOperation({summary: 'Delete todo by id'})
   @ApiResponse({status: 200, description: 'Delete todo', 
-    schema: {type: 'object', properties: {message: {type: 'string', example: 'message'}}}
+    schema: {type: 'object', properties: {message: {type: 'string', example: 'Todo successfully removed'}}}
   })
-  @ApiBadRequestResponse({status: 404, description: 'Todo not found'})
   @Delete('todo/:id')
   deleteOne(
     @Req() req: JwtAuthRequest,

@@ -5,6 +5,8 @@ services:
     image: postgres
     container_name: postgres
     restart: always
+    volumes:
+      - pg_db_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_SECRET}
@@ -14,7 +16,7 @@ services:
     container_name: todo-list-api
     restart: always
     ports:
-      - "8000:8000"
+      - ${PORT}:${PORT}
     depends_on:
       - db
     volumes:
@@ -25,4 +27,8 @@ services:
       - TYPEORM_DATABASE=${DB_NAME}
       - TYPEORM_PORT=5432
       - TYPEORM_HOST=db
+      - NODE_PROCESS=production
+
+volumes:
+  pg_db_data:
     

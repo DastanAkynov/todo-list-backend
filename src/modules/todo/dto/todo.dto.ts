@@ -17,17 +17,17 @@ export class CreateTodoDto {
 }
 
 export class UpdateTodoDto {
-  @ApiProperty({required: false})
+  @ApiProperty({required: false, example: 'New todo title'})
   @IsString()
   @IsNotEmpty()
   title?: string;
 
-  @ApiProperty({required: false})
+  @ApiProperty({required: false, example: 'New todo description'})
   @IsOptional()
   @IsString()
   description?: string;
 
-  @ApiProperty({required: false})
+  @ApiProperty({required: false, example: 'IN_PROGRESS'})
   @IsEnum(TodoStatus, {message:  `The status value must be - ${TodoStatus.CREATED} | ${TodoStatus.IN_PROGRESS} | ${TodoStatus.DONE} | ${TodoStatus.REJECTED} `})
   status?: TodoStatus;
 }
@@ -43,7 +43,7 @@ export class TodoExtendedResponse {
   @ApiProperty()
   todo: TodoResponse
 
-  @ApiProperty()
+  @ApiProperty({example: 'Todo successfully updated'})
   message: string
 }
 
